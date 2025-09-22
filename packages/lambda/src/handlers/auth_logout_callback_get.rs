@@ -4,7 +4,7 @@ use lambda_http::Response;
 
 use super::Context;
 
-pub async fn handler(Context { config: _, query, .. }: Context) -> Result<Response<Body>, Error> {
+pub async fn handler(Context { query, .. }: Context) -> Result<Response<Body>, Error> {
   let mut location = String::from("/");
 
   if let Some(state) = query.get("state") {
