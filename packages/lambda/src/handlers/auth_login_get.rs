@@ -13,7 +13,6 @@ pub async fn handler(
     Some(host) => host.to_str()?,
     None => config.local_origin.as_str(),
   };
-  
 
   let mut target = format!(
     "{}{}?response_type=code&client_id={}&redirect_uri={}/api/auth/login/callback",

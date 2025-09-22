@@ -12,7 +12,7 @@ pub struct PingAnyResponse {
 
 pub async fn handler(_ctx: Context) -> Result<Response<Body>, Error> {
   let resp = serde_json::to_vec(&PingAnyResponse {
-    message: "Hello World".into(),
+    message: "pong".into(),
   })?;
 
   Ok(
