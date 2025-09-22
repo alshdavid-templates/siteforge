@@ -9,7 +9,7 @@ pub async fn handler(
     config, query, req, ..
   }: Context
 ) -> Result<Response<Body>, Error> {
-  let return_origin = match req.headers().get("host") {
+  let return_origin = match req.headers().get("x-forwarded-host") {
     Some(host) => host.to_str()?,
     None => config.local_origin.as_str(),
   };

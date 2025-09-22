@@ -5,6 +5,14 @@ locals {
 
 resource "aws_cloudfront_origin_access_identity" "bucket_oai" {}
 
+resource "aws_cloudfront_function" "x_forwarded_host" {
+  name    = "test"
+  runtime = "cloudfront-js-2.0"
+  comment = "Add host header to cloudfront"
+  publish = true
+  code    = file("${path.module}/viewer-request_x-forwarded-host.js")
+}
+
 resource "aws_cloudfront_distribution" "website_cloudfront" {
   enabled = true
   wait_for_deployment = false
@@ -49,6 +57,11 @@ resource "aws_cloudfront_distribution" "website_cloudfront" {
     cached_methods            = ["GET", "HEAD"]
     cache_policy_id           = "4135ea2d-6df8-44a3-9df3-4b5a84be39ad" # CachingDisabled
     origin_request_policy_id  = "b689b0a8-53d0-40ab-baf2-68738e2966ac" # AllViewerExceptHostHeader
+
+    function_association {
+      event_type   = "viewer-request"
+      function_arn = aws_cloudfront_function.x_forwarded_host.arn
+    }
   }
 
   viewer_certificate {
