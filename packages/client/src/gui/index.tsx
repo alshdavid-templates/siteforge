@@ -9,6 +9,10 @@ new Worker(globalThis.importMap.resolve("worker")!, {
 
 const authClient = new AuthClient();
 
+console.log(authClient)
+// @ts-expect-error
+globalThis.authClient = authClient
+
 function App() {
   const [accountDetails, setAccountDetails] = useState(authClient.getDetails());
 

@@ -110,5 +110,12 @@ export default defineConfig({
     devMiddleware: {
       writeToDisk: true,
     },
+    proxy: [
+      {
+        target: "https://d2nlcd0i1nxmcg.cloudfront.net/",
+        context: ["/api"],
+        changeOrigin: true,
+      },
+    ],
   },
 });

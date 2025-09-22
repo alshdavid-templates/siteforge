@@ -78,6 +78,7 @@ export class AuthClient {
   ) {
     const target = new URL(window.location.origin)
     target.pathname = '/api/auth/logout'
+    target.searchParams.append("redirect_uri", window.location.origin)
 
     window.sessionStorage.setItem('auth_action', 'logout')
     if (state) {
