@@ -20,7 +20,7 @@ jobs:
       - run: eval $(curl -sSf sh.davidalsh.com/just.sh | sh)
       - run: eval $(curl -sSf sh.davidalsh.com/rust.sh | sh)
       - run: eval $(curl -sSf "sh.davidalsh.com/nodejs.sh" | sh)
-      - run: bash .github/scripts/terraform.bash
+      - run: eval $(curl -sSf "sh.davidalsh.com/terraform.sh" | sh)
       - run: |
           set -e
           npm install
