@@ -1,16 +1,16 @@
 [package]
 name = "lambda"
 version = "0.1.0"
-edition = "2021"
+edition = "2024"
 
 [dependencies]
-lambda_http = "*"
-lambda_runtime = "*"
-serde = { version = "*", features = ["derive"] }
-tokio = { version = "*", features = ["full"] }
-url = "*"
-serde_json = "*"
-anyhow = "*"
-ureq = { version = "*", features = ["socks-proxy", "charset", "json"] }
-headers = "*"
-chrono = "*"
+lambda_http = { workspace = true }
+lambda_runtime = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+tokio = { workspace = true, features = ["full"] }
+url = { workspace = true }
+serde_json = { workspace = true }
+anyhow = { workspace = true }
+ureq = { workspace = true, features = ["socks-proxy", "charset", "json"] }
+headers = { workspace = true }
+chrono = { workspace = true }

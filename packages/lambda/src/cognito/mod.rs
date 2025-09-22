@@ -37,6 +37,9 @@ impl CognitoService {
     form.push(("code", code));
     form.push(("redirect_uri", &redirect_uri));
 
-    Ok(ureq::post(&target).send_form(&form)?.into_json()?)
+    let mut resp = ureq::post(&target).send_form(form.into_boxed_slice())?;
+    let body = resp.body_mut();
+    let body_json = body.read_json::<TokenExchange>()?;
+    Ok(body_json)
   }
 }

@@ -4,12 +4,13 @@
     "./packages/client"
   ],
   "dependencies": {
-    "typescript": "*",
-    "@rspack/core": "*",
-    "@rspack/cli": "*",
-    "sass-loader": "*",
-    "sass-embedded": "*",
-    "css-loader": "*",
-    "html-webpack-plugin": "*"
+    "preact": "^10.27.2",
+    "@rspack/cli": "^1.5.5",
+    "@rspack/core": "^1.5.5",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.4",
+    "http-server-rs": "^0.0.6",
+    "prettier": "^3.6.2",
+    "style-loader": "^4.0.0"
   }
 }

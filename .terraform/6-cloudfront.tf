@@ -85,7 +85,7 @@ resource "aws_cloudfront_distribution" "website_cloudfront" {
 # }
 
 output "website_url" {
-  value = "http://${aws_cloudfront_distribution.website_cloudfront.domain_name}"
+  value = "https://${aws_cloudfront_distribution.website_cloudfront.domain_name}"
 }
 
 output "cloudfront_id" {

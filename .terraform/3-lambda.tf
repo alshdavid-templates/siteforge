@@ -48,8 +48,8 @@ resource "aws_lambda_function" "main_lambda" {
   runtime = "provided.al2"
   handler = "hello.handler"
 
-  architectures = ["x86_64"]
-  # architectures = ["arm64"] openssl doesn't cross compile
+  # architectures = ["x86_64"]
+  architectures = ["arm64"]
   
   memory_size = 128
 
