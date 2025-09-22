@@ -19,6 +19,7 @@ jobs:
       - run: sudo apt-get install -y curl wget unzip build-essential libssl-dev
       - run: eval $(curl -sSf sh.davidalsh.com/just.sh | sh)
       - run: eval $(curl -sSf sh.davidalsh.com/rust.sh | sh)
+      - run: rustup target add aarch64-unknown-linux-musl
       - run: eval $(curl -sSf "sh.davidalsh.com/nodejs.sh" | sh)
       - run: eval $(curl -sSf "sh.davidalsh.com/terraform.sh" | sh)
       - run: |
