@@ -9,6 +9,12 @@ pub async fn handler(Context { config, query, req, .. }: Context) -> Result<Resp
     Some(host) => host.to_str()?,
     None => config.local_origin.as_str(),
   };
+
+  let return_origin = if return_origin.contains("localhost") {
+    format!("http://{}", return_origin)
+  } else {
+    format!("https://{}", return_origin)
+  };
   
   let mut target = format!(
     "{}{}?client_id={}&logout_uri={}/api/auth/logout/callback",

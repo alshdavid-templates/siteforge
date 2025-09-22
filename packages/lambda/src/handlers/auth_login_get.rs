@@ -14,6 +14,12 @@ pub async fn handler(
     None => config.local_origin.as_str(),
   };
 
+  let return_origin = if return_origin.contains("localhost") {
+    format!("http://{}", return_origin)
+  } else {
+    format!("https://{}", return_origin)
+  };
+
   let mut target = format!(
     "{}{}?response_type=code&client_id={}&redirect_uri={}/api/auth/login/callback",
     config.cognito_origin, config.login_endpoint, config.cognito_client_id, return_origin
