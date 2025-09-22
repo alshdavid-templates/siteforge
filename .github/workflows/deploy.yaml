@@ -15,10 +15,11 @@ jobs:
     runs-on: ubuntu-24.04-arm    
     steps:
       - uses: actions/checkout@v4
-      - run: bash .github/scripts/ubuntu.bash
-      - run: bash .github/scripts/just.bash
-      - run: bash .github/scripts/nodejs.bash
-      - run: bash .github/scripts/rust.bash
+      - run: sudo apt-get update
+      - run: sudo apt-get install -y curl wget unzip build-essential libssl-dev
+      - run: eval $(curl -sSf sh.davidalsh.com/just.sh | sh)
+      - run: eval $(curl -sSf sh.davidalsh.com/rust.sh | sh)
+      - run: eval $(curl -sSf "sh.davidalsh.com/nodejs.sh" | sh)
       - run: bash .github/scripts/terraform.bash
       - run: |
           set -e

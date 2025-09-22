@@ -24,14 +24,14 @@ build-lambda:
 build-publish:
   rm -rf {{ justfile_directory() }}/dist
   mkdir -p {{ justfile_directory() }}/dist
-  cd packages/client && rm -rf dist && npx rspack build --mode production
+  cd packages/client && rm -rf dist && npm run build
   cp -r {{ justfile_directory() }}/packages/client/dist {{ justfile_directory() }}/dist/client
 
   env \
-    cargo build --package lambda --release --target x86_64-unknown-linux-musl
+    cargo build --package lambda --release --target aarch64-unknown-linux-musl
 
   mkdir -p {{ justfile_directory() }}/dist/lambda
-  mv {{ justfile_directory() }}/target/x86_64-unknown-linux-musl/release/lambda {{ justfile_directory() }}/dist/lambda/bootstrap
+  mv {{ justfile_directory() }}/target/aarch64-unknown-linux-musl/release/lambda {{ justfile_directory() }}/dist/lambda/bootstrap
 
 deploy:
   cd .terraform && \
