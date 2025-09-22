@@ -10,7 +10,9 @@ serde = { workspace = true, features = ["derive"] }
 tokio = { workspace = true, features = ["full"] }
 url = { workspace = true }
 serde_json = { workspace = true }
-anyhow = { workspace = true }
+anyhow.workspace = true
 ureq = { workspace = true, features = ["socks-proxy", "charset", "json"] }
 headers = { workspace = true }
 chrono = { workspace = true }
+cookie = { version = "0.18.1", features = ["percent-encode", "percent-encoding"] }
+base64 = "0.22.1"
