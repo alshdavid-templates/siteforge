@@ -6,7 +6,7 @@ locals {
 resource "aws_cloudfront_origin_access_identity" "bucket_oai" {}
 
 resource "aws_cloudfront_function" "x_forwarded_host" {
-  name    = "test"
+  name    = "x_forwarded_host"
   runtime = "cloudfront-js-2.0"
   comment = "Add host header to cloudfront"
   publish = true
