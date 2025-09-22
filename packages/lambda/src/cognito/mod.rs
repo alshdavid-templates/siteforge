@@ -14,7 +14,6 @@ pub struct TokenExchange {
 pub struct CognitoService {
   pub cognito_origin: String,
   pub token_endpoint: String,
-  pub local_origin: String,
   pub cognito_client_id: String,
   pub cognito_secret: String,
 }
@@ -23,12 +22,13 @@ impl CognitoService {
   pub fn token_exchange(
     &self,
     code: &str,
+    redirect_uri: &str,
   ) -> anyhow::Result<TokenExchange> {
     let target = format!(
       "{}{}?scope=email/openid",
       self.cognito_origin, self.token_endpoint
     );
-    let redirect_uri = format!("{}/api/auth/login/callback", self.local_origin);
+    let redirect_uri = format!("{}/api/auth/login/callback", redirect_uri);
 
     let mut form = Vec::<(&str, &str)>::new();
     form.push(("client_id", &self.cognito_client_id));

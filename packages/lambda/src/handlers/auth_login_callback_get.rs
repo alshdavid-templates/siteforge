@@ -8,6 +8,8 @@ pub async fn handler(
   Context {
     query,
     cognito_service,
+    req,
+    config,
     ..
   }: Context
 ) -> Result<Response<Body>, Error> {
@@ -20,7 +22,18 @@ pub async fn handler(
     );
   };
 
-  let token = cognito_service.token_exchange(code)?;
+  let return_origin = match req.headers().get("x-forwarded-host") {
+    Some(host) => host.to_str()?,
+    None => config.local_origin.as_str(),
+  };
+
+  let return_origin = if return_origin.contains("localhost") {
+    format!("http://{}", return_origin)
+  } else {
+    format!("https://{}", return_origin)
+  };
+
+  let token = cognito_service.token_exchange(code, &return_origin)?;
   let payload = token.id_token.split_terminator(".").collect::<Vec<&str>>()[1];
   let one_year = now_plus_days(365)?;
   Ok(

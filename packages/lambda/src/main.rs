@@ -23,7 +23,6 @@ async fn function_handler(event: Request) -> Result<Response<Body>, Error> {
   let cognito_service = CognitoService {
     cognito_origin: config.cognito_origin.clone(),
     token_endpoint: config.token_endpoint.clone(),
-    local_origin: config.local_origin.clone(),
     cognito_client_id: config.cognito_client_id.clone(),
     cognito_secret: config.cognito_secret.clone(),
   };

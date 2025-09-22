@@ -112,9 +112,12 @@ export default defineConfig({
     },
     proxy: [
       {
-        target: "https://d2nlcd0i1nxmcg.cloudfront.net/",
+        target: "https://rad5ld3546.execute-api.ap-southeast-2.amazonaws.com/",
         context: ["/api"],
         changeOrigin: true,
+        headers: {
+          ['x-forwarded-host']: 'localhost:4200'
+        }
       },
     ],
   },
